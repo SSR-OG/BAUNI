@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>BAUNI™ — The Compact Legend</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#12051d;color:#fff;overflow-x:hidden}
+body{background:radial-gradient(circle at 20% 10%,#ff4fa344,transparent 30%),radial-gradient(circle at 80% 20%,#7c4dff44,transparent 30%),linear-gradient(135deg,#16071f,#08020e 70%)}
+.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:min(760px,100%);border:2px solid #ffffff22;background:#ffffff0d;backdrop-filter:blur(16px);border-radius:30px;padding:28px;box-shadow:0 25px 80px #0008;text-align:center;position:relative;overflow:hidden}
+.spark{position:absolute;width:8px;height:8px;background:#fff;border-radius:50%;opacity:.7;animation:float 4s infinite ease-in-out}
+.s1{left:8%;top:20%}.s2{left:90%;top:35%;animation-delay:1s}.s3{left:15%;bottom:15%;animation-delay:2s}.s4{right:12%;bottom:20%;animation-delay:3s}
+@keyframes float{50%{transform:translateY(-25px) scale(1.7);opacity:.2}}
+.badge{display:inline-block;padding:8px 14px;border-radius:999px;background:#ff4fa322;border:1px solid #ff7dbb77;font-weight:800;letter-spacing:2px;font-size:12px}
+h1{font-size:clamp(52px,14vw,112px);margin:12px 0 0;line-height:.85;letter-spacing:-6px;background:linear-gradient(90deg,#ff78bd,#ffd166,#9c8cff);-webkit-background-clip:text;color:transparent}
+.sub{font-size:clamp(17px,4vw,24px);margin:15px 0 25px;color:#f8dff0}
+button{border:0;border-radius:16px;padding:15px 20px;font-size:16px;font-weight:900;cursor:pointer;background:linear-gradient(90deg,#ff4f9a,#8b5cf6);color:white;box-shadow:0 10px 25px #ff4f9a33;transition:.2s}
+button:hover{transform:translateY(-2px) scale(1.02)}
+.section{display:none}.section.active{display:block;animation:pop .4s ease}
+@keyframes pop{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.meter{margin:24px auto;width:min(560px,100%);height:38px;border-radius:20px;background:#ffffff12;overflow:hidden;border:1px solid #ffffff18}
+.fill{height:100%;width:4%;background:linear-gradient(90deg,#ff4f9a,#ffd166);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.result{font-size:25px;font-weight:900;min-height:34px}
+.joke{margin:18px auto;padding:18px;border-radius:20px;background:#0003;font-size:18px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0}
+.tile{padding:18px;border-radius:20px;background:#ffffff0c;border:1px solid #ffffff12;font-size:15px;line-height:1.4}
+.tile b{display:block;font-size:30px;margin-bottom:7px}
+.big{font-size:clamp(28px,7vw,54px);font-weight:1000;margin:10px 0}
+.counter{font-size:72px;font-weight:1000;color:#ffd166}
+.small{font-size:13px;color:#cdbbd0}
+#toast{position:fixed;left:50%;bottom:25px;transform:translateX(-50%);background:#fff;color:#18091e;padding:12px 18px;border-radius:999px;font-weight:800;display:none;z-index:5;max-width:90%;box-shadow:0 10px 40px #0008}
+footer{margin-top:22px;color:#bca9bd;font-size:12px}
+@media(max-width:520px){.card{padding:22px 15px;border-radius:24px}.grid{grid-template-columns:1fr}h1{letter-spacing:-3px}.sub{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div><div class="spark s4"></div>
+
+<section id="home" class="section active">
+<div class="badge">⚠️ OFFICIAL HEIGHT DEPARTMENT ⚠️</div>
+<h1>BAUNI™</h1>
+<div class="sub">A premium, pocket-sized human experience. 🎀</div>
+<div class="joke">🚨 <b>Breaking News:</b> Scientists have confirmed that cuteness increases when the subject gets smaller. 💕</div>
+<div class="grid">
+<div class="tile"><b>🎀</b>100% Cute</div>
+<div class="tile"><b>😂</b>200% Drama</div>
+<div class="tile"><b>👑</b>500% Attitude</div>
+<div class="tile"><b>📏</b>Height: Classified</div>
+</div>
+<button onclick="show('test')">ENTER THE BAUNI LAB 🧪</button>
+<footer>100% scientifically inaccurate • 0% friendship damage • 100% silly 😂</footer>
+</section>
+
+<section id="test" class="section">
+<div class="badge">📏 BAUNI HEIGHT ANALYZER</div>
+<div class="big">Scanning the tiny legend... 🔬</div>
+<div class="meter"><div id="fill" class="fill"></div></div>
+<div id="result" class="result">Please stand straight. No, straighter. 😭</div>
+<div class="joke" id="joke">Scanning for height... please wait while we look closer to the ground. 🔎</div>
+<button onclick="measure()">MEASURE AGAIN 📐</button>
+<br><br>
+<button onclick="show('game')" style="background:linear-gradient(90deg,#7c5cff,#ff4f9a)">NEXT CHALLENGE 🎮</button>
+</section>
+
+<section id="game" class="section">
+<div class="badge">🎮 BAUNI MINI GAME</div>
+<h2>Catch the BAUNI Excuse! 😂</h2>
+<div class="joke">Someone has accused BAUNI of being short. Quick! Pick the most believable excuse before the evidence disappears. 👀</div>
+<div id="excuseBox" style="min-height:190px;display:flex;align-items:center;justify-content:center;border-radius:24px;background:#0003;border:1px solid #ffffff18;margin:18px 0;padding:18px">
+<div id="excuse" class="big" style="font-size:clamp(24px,6vw,42px)">🤔 Loading excuse...</div>
+</div>
+<div id="gameScore" class="result">Excuses accepted: 0 📝</div>
+<div class="grid" style="margin-top:15px">
+<button onclick="pickExcuse(0)">🧚 I'm travel-sized!</button>
+<button onclick="pickExcuse(1)">📦 I'm in compact mode!</button>
+<button onclick="pickExcuse(2)">👑 Height is temporary!</button>
+<button onclick="pickExcuse(3)">😂 Everyone else is just too tall!</button>
+</div>
+<div id="gameResult" class="joke">Choose wisely. The BAUNI court is watching. ⚖️</div>
+<button onclick="newExcuse()" style="background:linear-gradient(90deg,#7c5cff,#ff4f9a)">NEW ACCUSATION 🔄</button>
+<br><br>
+<button onclick="show('quiz')" style="background:linear-gradient(90deg,#7c5cff,#ff4f9a)">NEXT: BAUNI QUIZ 💕</button>
+</section>
+
+<section id="quiz" class="section">
+<div class="badge">💗 IMPORTANT RESEARCH</div>
+<h2>Which BAUNI power do you possess?</h2>
+<div class="joke">Choose honestly. The International BAUNI Council is watching. 👀</div>
+<div class="grid">
+<button onclick="answer('stealth')">🥷 Tiny Ninja</button>
+<button onclick="answer('attitude')">👑 Pocket Queen</button>
+<button onclick="answer('chaos')">💥 Mini Menace</button>
+<button onclick="answer('cute')">🎀 Certified Cutie</button>
+</div>
+<div id="answer" class="result"></div>
+<button onclick="show('facts')" style="background:linear-gradient(90deg,#7c5cff,#ff4f9a)">SHOW MY BENEFITS ✨</button>
+</section>
+
+<section id="facts" class="section">
+<div class="badge">🧠 BAUNI ADVANTAGES</div>
+<h2>Why be tall when you can be... <i>efficient?</i> 😂</h2>
+<div class="grid">
+<div class="tile"><b>🛫</b>No head bumps on low ceilings.</div>
+<div class="tile"><b>👜</b>Maximum human. Minimum storage space.</div>
+<div class="tile"><b>🕵️</b>Perfect stealth mode in crowded places.</div>
+<div class="tile"><b>🚗</b>Legroom? Who needs it?</div>
+<div class="tile"><b>📦</b>Shipping costs optimized.</div>
+<div class="tile"><b>❤️</b>Portable bestie technology.</div>
+<div class="tile"><b>🍪</b>Can hide behind a cookie jar.</div>
+<div class="tile"><b>🪄</b>Compact enough to fit in everyone's heart.</div>
+</div>
+<button onclick="show('fortune')">GET YOUR BAUNI FORTUNE 🔮</button>
+</section>
+
+<section id="fortune" class="section">
+<div class="badge">🔮 BAUNI FORTUNE MACHINE</div>
+<div class="big">Your future says...</div>
+<div class="joke" id="fortuneText">Press the button. Destiny awaits. 👀</div>
+<button onclick="fortune()">REVEAL MY DESTINY ✨</button>
+<br><br>
+<button onclick="show('final')" style="background:linear-gradient(90deg,#7c5cff,#ff4f9a)">I'M READY FOR THE VERDICT 🏆</button>
+</section>
+
+<section id="final" class="section">
+<div class="badge">🏆 OFFICIAL CERTIFICATE</div>
+<div class="big">WORLD'S MOST<br>COMPACT LEGEND</div>
+<div class="counter" id="counter">0</div>
+<div class="small">centimeters of pure attitude detected</div>
+<div class="joke">After extensive research:<br><br>
+<b>Height: negotiable. 📏<br>
+Cuteness: illegal. 🎀<br>
+Attitude: ABSOLUTELY GIGANTIC. 👑</b><br><br>
+Okay BAUNI, we love you. ❤️😂
+</div>
+<button onclick="confetti()">ACCEPT YOUR AWARD 🏆</button>
+<br><br>
+<button onclick="show('home')" style="background:#ffffff18">PLAY AGAIN 🔄</button>
+<footer>Presented by the International Institute of Friendship & Unnecessary Roasting™</footer>
+</section>
+</div>
+</div>
+<div id="toast">🏆 Award accepted. Please remain compact.</div>
+
+<script>
+function show(id){
+ document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ if(id==='test') setTimeout(measure,500);
+ if(id==='game') setTimeout(newExcuse,300);
+ if(id==='final') animateCounter();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function measure(){
+ const fill=document.getElementById('fill'), result=document.getElementById('result'), joke=document.getElementById('joke');
+ fill.style.width=(Math.floor(Math.random()*8)+2)+'%';
+ const lines=["Result: Pocket Edition detected. 😂","Result: Height loading... 1% complete.","Result: Adorable. Technically above ground. 😭","Result: Certified BAUNI. Congratulations. 🏆","Result: Tall enough to reach the snacks... eventually."];
+ const jokes=["The measuring tape has requested a smaller unit.","Please do not move. We almost found the top.","Good news: your height is compact. Bad news: the tape is laughing.","Researchers have concluded that attitude adds approximately 300 cm."];
+ result.textContent=lines[Math.floor(Math.random()*lines.length)];
+ joke.textContent=jokes[Math.floor(Math.random()*jokes.length)];
+}
+let excusesAccepted=0;
+const excuses=[
+ "🤭 I'm travel-sized!",
+ "📦 I'm in compact mode!",
+ "👑 Height is temporary!",
+ "😂 Everyone else is just too tall!"
+];
+const reactions=[
+ "VALID! The court has no further questions. 😂",
+ "Hmm... suspiciously convincing. 🤨",
+ "BAUNI lawyers approve this statement. 👩‍⚖️",
+ "Objection! Too cute to be guilty. 🎀"
+];
+function newExcuse(){
+ const e=document.getElementById('excuse');
+ e.textContent=excuses[Math.floor(Math.random()*excuses.length)];
+ document.getElementById('gameResult').textContent="The next accusation has arrived. Choose your defense! ⚖️";
+}
+function pickExcuse(i){
+ excusesAccepted++;
+ document.getElementById('excuse').textContent=excuses[i];
+ document.getElementById('gameScore').textContent='Excuses accepted: '+excusesAccepted+' 📝';
+ document.getElementById('gameResult').textContent=reactions[Math.floor(Math.random()*reactions.length)];
+ if(excusesAccepted>=5){
+   document.getElementById('gameResult').textContent="🏆 BAUNI has officially escaped all height allegations!";
+   confetti();
+   excusesAccepted=0;
+ }
+ setTimeout(newExcuse,900);
+}
+function answer(type){
+ const out=document.getElementById('answer');
+ const data={
+ stealth:"🥷 TINY NINJA — You disappear in crowds and reappear beside the snacks.",
+ attitude:"👑 POCKET QUEEN — 150 cm of height, 3000 cm of confidence.",
+ chaos:"💥 MINI MENACE — Small package, factory-installed mischief.",
+ cute:"🎀 CERTIFIED CUTIE — Scientists have officially given up measuring the cuteness."
+ };
+ out.textContent=data[type];
+}
+function fortune(){
+ const f=[
+ "🔮 You will find money in an old pocket. It will be ₹10. Still a win.",
+ "🔮 Someone will call you short today. You will call them jealous.",
+ "🔮 Great things are coming your way. They may have to bend down first.",
+ "🔮 Your next selfie will be 97% face and 3% background. 📸",
+ "🔮 Your destiny is bright... because you are closer to the ground and therefore closer to the Earth's core. 🌎",
+ "🔮 You will conquer the world. Step one: find a slightly taller chair."
+ ];
+ document.getElementById('fortuneText').textContent=f[Math.floor(Math.random()*f.length)];
+}
+function animateCounter(){
+ let n=0;const el=document.getElementById('counter');el.textContent='0';
+ const t=setInterval(()=>{n+=Math.ceil((Math.random()*12)+5);if(n>=999){n=999;clearInterval(t)}el.textContent=n+' cm';},35);
+}
+function confetti(){
+ document.getElementById('toast').style.display='block';
+ for(let i=0;i<55;i++){
+   const e=document.createElement('div');e.textContent=['🎉','😂','✨','💖','🏆','🎀','⭐'][Math.floor(Math.random()*7)];
+   e.style.position='fixed';e.style.left=Math.random()*100+'vw';e.style.top='-30px';e.style.fontSize=(18+Math.random()*25)+'px';e.style.zIndex=10;
+   document.body.appendChild(e);
+   e.animate([{transform:'translateY(0) rotate(0deg)',opacity:1},{transform:'translateY(110vh) rotate(720deg)',opacity:0}],{duration:1800+Math.random()*1800,easing:'ease-in'}).onfinish=()=>e.remove();
+ }
+ setTimeout(()=>document.getElementById('toast').style.display='none',2500);
+}
+</script>
+</body>
+</html>
